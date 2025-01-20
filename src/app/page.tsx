@@ -116,7 +116,7 @@ export default function Home() {
     {
       name: "Linda Martinez",
       address: "8847 Mockingbird Lane, Dallas, TX 75238",
-      description: "The Dallas School Teacher Who Talks \"Way\" Too Much.",
+      description: "The Dallas School Teacher Who Talks &quot;Way&quot; Too Much.",
       image: propertyImages[3],
       avatar: profilePictures[3]
     },
@@ -187,7 +187,7 @@ export default function Home() {
             REI Sales and Negotiation Skills
           </h1>
           <p className="text-[1.2rem] text-gray-400 mb-12 max-w-[61.8%] mx-auto leading-[1.618]">
-            Stop Losing Deals You Should Have Won With This AI-Powered Training System That Uses Neuroscience to permanently amplify your Sales and Negotiation Skills—So You Never Miss a Closable Deal Again
+            Stop Losing Deals You Should Have Won With This AI-Powered Training System That Uses Neuroscience to permanently amplify your Sales and Negotiation Skills&mdash;So You Never Miss a Closable Deal Again
           </p>
           <div className="flex justify-center">
             <a href="https://secure.atlastraining.io" className="inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-6 py-3 rounded-lg text-[1rem] font-medium transition-all">
@@ -946,8 +946,8 @@ export default function Home() {
         {/* Final CTA Section */}
         <section id="final-cta-section" className="relative pt-0 pb-40 px-4 md:px-6 overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0A0D1B] via-[#0A0D1B] to-transparent">
-            <div className="absolute inset-0 bg-[radial-gradient(100%_50%_at_0%_100%,rgba(34,197,94,0.15)_0%,transparent_50%)]"></div>
-            <div className="absolute inset-0 bg-[radial-gradient(100%_50%_at_100%_100%,rgba(34,197,94,0.15)_0%,transparent_50%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(100% 50%_at_0%_100%,rgba(34,197,94,0.15)_0%,transparent_50%)]"></div>
+            <div className="absolute inset-0 bg-[radial-gradient(100% 50%_at_100%_100%,rgba(34,197,94,0.15)_0%,transparent_50%)]"></div>
           </div>
           <div className="max-w-[85rem] mx-auto relative">
             <div className="text-center">
