@@ -39,8 +39,7 @@ export default function Home() {
       perspective(2000px)
       rotateX(${base.rotateX}deg)
       rotateY(${base.rotateY}deg)
-      ${isBack ? '' : 'translateX(' + base.translateX + '%)'}
-      translateY(${base.translateY}%)
+      ${isBack ? '' : 'translateY(' + base.translateY + '%)'}
       scale(${base.scale})
     `;
 
