@@ -186,7 +186,7 @@ export default function Home() {
             Permanently Amplify Your<br />
             REI Sales and Negotiation Skills
           </h1>
-          // eslint-disable-next-line react/no-unescaped-entities
+          {/* eslint-disable-next-line react/no-unescaped-entities */}
           <p className="text-[1.2rem] text-gray-400 mb-12 max-w-[61.8%] mx-auto leading-[1.618]">
             Stop Losing Deals You Should Have Won With This AI-Powered Training System That Uses Neuroscience to permanently amplify your Sales and Negotiation Skills—So You Never Miss a Closable Deal Again
           </p>
