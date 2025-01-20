@@ -53,6 +53,7 @@ export default function Home() {
       perspective(2000px)
       rotateX(${base.rotateX + rotateXDelta}deg)
       rotateY(${base.rotateY + rotateYDelta}deg)
+      // @ts-ignore
       translateX(${(isBack ? 0 : base.translateX + hoverTranslateX)}%)
       translateY(${base.translateY}%)
       scale(${base.scale})
