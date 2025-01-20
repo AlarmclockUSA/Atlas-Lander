@@ -136,30 +136,54 @@ export default function Home() {
     }
   ];
 
-  // Add media query to hide both front and back panels on mobile
+  // Add media query to adjust layout for full screen width on mobile
   const styles = `
     @media (max-width: 768px) {
+      nav {
+        display: block;
+        margin-bottom: 2rem;
+        position: relative;
+        height: auto;
+        padding: 1rem 0;
+      }
+      nav .flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      nav .flex-shrink-0 {
+        margin-bottom: 0.5rem;
+      }
+      nav .hidden.md\:flex {
+        display: none;
+      }
+      nav .flex.items-center.gap-4 {
+        width: 100%;
+        justify-content: center;
+      }
       .hidden.md\:flex { display: none; }
       .flex-grow { flex-grow: 1; }
       .text-center { text-align: center; }
-      .px-4 { padding-left: 1rem; padding-right: 1rem; }
-      .py-32 { padding-top: 8rem; padding-bottom: 8rem; }
-      .text-[3.2rem] { font-size: 2rem; }
-      .text-[4.8rem] { font-size: 3rem; }
+      .px-4, .md\:px-6 {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .py-32 { padding-top: 4rem; padding-bottom: 4rem; }
+      .text-[3.2rem] { font-size: 1.5rem; }
+      .text-[4.8rem] { font-size: 2.5rem; }
       .max-w-[85rem] { max-width: 100%; }
       .mx-auto { margin-left: auto; margin-right: auto; }
-      .mt-20 { margin-top: 5rem; }
+      .mt-20 { margin-top: 2.5rem; }
       .h-[600px] { height: auto; }
       .rounded-xl { border-radius: 0.5rem; }
-      .p-6 { padding: 1.5rem; }
-      .space-x-12 { gap: 1rem; }
-      .space-y-4 { gap: 1rem; }
-      .text-[1.2rem] { font-size: 1rem; }
-      .text-[1.1rem] { font-size: 0.9rem; }
-      .text-[1rem] { font-size: 0.8rem; }
-      .leading-[1.618] { line-height: 1.5; }
-      .leading-[1.272] { line-height: 1.2; }
-      .leading-[1.2] { line-height: 1.1; }
+      .space-x-12 { gap: 0.5rem; }
+      .space-y-4 { gap: 0.5rem; }
+      .text-[1.2rem] { font-size: 0.9rem; }
+      .text-[1.1rem] { font-size: 0.8rem; }
+      .text-[1rem] { font-size: 0.7rem; }
+      .leading-[1.618] { line-height: 1.4; }
+      .leading-[1.272] { line-height: 1.1; }
+      .leading-[1.2] { line-height: 1; }
       .max-w-[61.8%] { max-width: 90%; }
       .max-w-6xl { max-width: 100%; }
       .w-full { width: 100%; }
@@ -173,7 +197,36 @@ export default function Home() {
       .hover\:bg-[#16A34A]:hover { background-color: #16A34A; }
       .hover\:text-[#22C55E]:hover { color: #22C55E; }
       .hover\:underline:hover { text-decoration: underline; }
-      .dashboard-preview, .front-panel, .back-panel { display: none; } /* Hide both panels on mobile */
+      .relative.pt-32.pb-40.px-4.md\:px-6.text-\[87\.5\%\] { width: 100%; padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0; }
+      #dashboard {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .flex.items-center {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .fixed.top-0.left-0.right-0.z-50 {
+        display: none !important;
+      }
+      .max-w-[85rem], .max-w-6xl {
+        max-width: 100%;
+      }
+      .px-4, .md\:px-6 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .flex {
+        flex-direction: column;
+      }
     }
   `;
 
@@ -189,35 +242,30 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#0A0C1B] text-white">
+    <main className="min-h-screen bg-[#0A0C1B] text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0C1B] border-b border-white/10">
-        <div className="max-w-[85rem] mx-auto px-4 md:px-6 h-16">
-          <div className="flex items-center justify-between h-full">
+        <div className="max-w-[85rem] mx-auto h-16">
+          <div className="flex h-full items-center px-4 md:px-6">
+
             {/* Logo */}
-            <div className="flex-shrink-0 w-24">
+            <div className="flex-shrink-0">
               <div className="text-xl font-bold">ATLAS</div>
             </div>
 
-            {/* Navigation Links - Centered */}
-            <div className="hidden md:flex flex-grow items-center justify-center">
-              <div className="flex items-center space-x-12">
-                <a href="#sellers" className="text-gray-300 hover:text-white transition-colors">Sellers</a>
-                <a href="#how-it-works" className="text-gray-300 hover:text-white transition-colors">How It Works</a>
-                <a href="#research" className="text-gray-300 hover:text-white transition-colors">Research</a>
-                <a href="#benefits" className="text-gray-300 hover:text-white transition-colors">Benefits</a>
-                <a href="#final-cta-section" className="text-gray-300 hover:text-white transition-colors">Pricing</a>
-              </div>
+            {/* Center Nav */}
+            <div className="hidden md:flex items-center ml-auto">
+              <a href="#sellers" className="text-gray-300 hover:text-white px-6">Sellers</a>
+              <a href="#how-it-works" className="text-gray-300 hover:text-white px-6">How It Works</a>
+              <a href="#research" className="text-gray-300 hover:text-white px-6">Research</a>
+              <a href="#benefits" className="text-gray-300 hover:text-white px-6">Benefits</a>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex-shrink-0 flex items-center space-x-6">
-              <a href="https://login.atlastraining.io" className="text-gray-300 hover:text-white transition-colors">Sign in</a>
-              <a href="https://secure.atlastraining.io" className="inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-6 py-3 rounded-lg text-[1rem] font-medium transition-all">
+            {/* Right Side */}
+            <div className="flex items-center gap-4">
+              <a href="/login" className="text-gray-300 hover:text-white">Sign in</a>
+              <a href="/signup" className="hidden md:inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-4 py-2 rounded-lg text-sm font-medium">
                 Try Now Free
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
               </a>
             </div>
           </div>
@@ -225,25 +273,24 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section id="dashboard" className="relative pt-32 pb-40 px-4 md:px-6 text-[87.5%]">
-        <div className="max-w-[85rem] mx-auto text-center">
-          <div className="inline-flex items-center bg-white/5 rounded-full px-4 py-2 mb-[2rem] border border-white/10">
-            <span className="text-[0.9rem] font-medium text-[#22C55E] mr-2">INTRODUCING</span>
-            <span className="text-[1.1rem] leading-[1.618] text-gray-300">The Next Generation of Sales Training →</span>
+      <section id="dashboard" className="relative py-16 md:py-32 pb-20 md:pb-40 px-4 md:px-6 lg:px-8 text-sm md:text-base">
+        <div className="w-full max-w-7xl mx-auto text-center">
+          <div className="inline-flex items-center bg-white/5 rounded-full px-4 py-2 mb-8 border border-white/10">
+            <span className="text-sm font-medium text-[#22C55E] mr-2">INTRODUCING</span>
+            <span className="text-base leading-snug text-gray-300">The Next Generation of Sales Training →</span>
           </div>
-          <div className="text-[1rem] tracking-[0.1em] text-[#22C55E] font-medium mb-4">
+          <div className="text-sm tracking-wide text-[#22C55E] font-medium mb-4">
             GET STARTED FREE TODAY
           </div>
-          <h1 className="text-[3.2rem] md:text-[4.8rem] font-bold mb-[2rem] leading-[1.272]">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
             Permanently Amplify Your<br />
             REI Sales and Negotiation Skills
           </h1>
-          {/* eslint-disable-next-line react/no-unescaped-entities */}
-          <p className="text-[1.2rem] text-gray-400 mb-12 max-w-[61.8%] mx-auto leading-[1.618]">
+          <p className="text-base text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
             Stop Losing Deals You Should Have Won With This AI-Powered Training System That Uses Neuroscience to permanently amplify your Sales and Negotiation Skills—So You Never Miss a Closable Deal Again
           </p>
           <div className="flex justify-center">
-            <a href="https://secure.atlastraining.io" className="inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-6 py-3 rounded-lg text-[1rem] font-medium transition-all">
+            <a href="https://secure.atlastraining.io" className="inline-flex items-center justify-center bg-[#22C55E] hover:bg-[#16A34A] w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg text-base md:text-lg font-medium transition-all">
               Try Now Free
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -254,7 +301,7 @@ export default function Home() {
 
         {/* Dashboard Preview */}
         <div 
-          className="max-w-6xl mx-auto mt-20 relative h-[600px]" 
+          className="hidden md:block max-w-7xl mx-auto mt-20 relative overflow-hidden"
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
@@ -273,25 +320,12 @@ export default function Home() {
           >
             <div className="bg-[#0D1025] rounded-xl h-full border border-white/[0.08] relative z-[1]">
               <div className="p-6 h-full">
-                <div className="flex items-center justify-between mb-6">
-                  <div>
-                    <h2 className="text-2xl font-bold">Hello, Matt!</h2>
-                    <p className="text-gray-400">Click any seller to get started</p>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <button className="bg-[#22C55E] p-2 rounded-lg">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                   {properties.map((property, index) => (
                     <div key={index} className="bg-[#141832] rounded-xl overflow-hidden hover:ring-2 hover:ring-[#22C55E] transition-all">
                       <div className="h-40 relative">
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0D1025] to-transparent z-10" />
-          <Image
+                        <Image
                           src={property.image}
                           alt={property.name}
                           fill
@@ -333,7 +367,7 @@ export default function Home() {
             <div className="bg-[#0D1025] rounded-xl overflow-hidden h-full border border-white/[0.08]">
               {/* Property Image */}
               <div className="w-full h-48 relative">
-          <Image
+                <Image
                   src="/rebecca-property.png"
                   alt="Rebecca Mitchell's Property"
                   fill
@@ -345,7 +379,7 @@ export default function Home() {
               <div className="p-6">
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-3">
-          <Image
+                    <Image
                       src="/rebecca-avata.png"
                       alt="Rebecca Mitchell"
                       width={40}
@@ -358,13 +392,13 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="flex space-x-2">
-                    <button className="bg-[#22C55E] text-white px-4 py-2 rounded-lg text-sm flex items-center">
+                    <button className="bg-[#22C55E] text-white w-full md:w-auto px-4 py-2 rounded-lg text-sm flex items-center">
                       <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
                       </svg>
                       Start Call
                     </button>
-                    <button className="text-white px-4 py-2 rounded-lg text-sm border border-gray-600">
+                    <button className="text-white w-full md:w-auto px-4 py-2 rounded-lg text-sm border border-gray-600">
                       End Call
                     </button>
                   </div>
@@ -372,7 +406,7 @@ export default function Home() {
 
                 <div className="space-y-4">
                   <div className="bg-[#141832] p-4 rounded-lg">
-                    <h3 className="text-lg font-semibold mb-4">Property Information</h3>
+                    <h3 className="text-xl md:text-2xl font-semibold mb-4">Property Information</h3>
                     <div className="grid grid-cols-2 gap-6">
                       <div>
                         <div className="text-sm text-gray-400">Address</div>
@@ -395,7 +429,7 @@ export default function Home() {
                   </div>
 
                   <div className="bg-[#141832] p-4 rounded-lg">
-                    <h3 className="text-lg font-semibold mb-4">Comparable Properties</h3>
+                    <h3 className="text-xl md:text-2xl font-semibold mb-4">Comparable Properties</h3>
                     <div className="space-y-3">
                       <div className="flex justify-between items-center">
                         <div>
@@ -431,7 +465,7 @@ export default function Home() {
           <div className="flex flex-col items-center px-4 md:px-6">
             {/* Text Content */}
             <div className="text-center mb-16 max-w-[61.8%]">
-              <h2 className="text-[2.8rem] md:text-[3.6rem] font-bold mb-6 leading-[1.2]">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 Breathtakingly Realistic<br />
                 <span className="text-[#22C55E]">Seller Simulations</span>
               </h2>
@@ -441,174 +475,172 @@ export default function Home() {
             </div>
 
             {/* Photo Grid */}
-            <div className="w-full max-w-[61.8%]">
-              <div className="grid grid-cols-3 gap-4">
-                {/* Frank Reeves */}
-                <div className="bg-[#141832] rounded-xl overflow-hidden hover:ring-2 hover:ring-[#22C55E] transition-all">
-                  <div className="aspect-video relative">
-                    <Image
-                      src={propertyImages[0]}
-                      alt="Tudor House"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Image
-                        src={properties[0].avatar}
-                        alt={properties[0].name}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-sm">{properties[0].name}</h3>
-                        <p className="text-xs text-gray-400">{properties[0].address}</p>
-                      </div>
-                    </div>
-                    <p className="text-xs text-gray-400 italic">{properties[0].description}</p>
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {/* Frank Reeves */}
+              <div className="bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+                <div className="h-48 md:h-40 relative">
+                  <Image
+                    src={propertyImages[0]}
+                    alt="Tudor House"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-
-                {/* Bob Eastman */}
-                <div className="bg-[#141832] rounded-xl overflow-hidden hover:ring-2 hover:ring-[#22C55E] transition-all">
-                  <div className="aspect-video relative">
+                <div className="p-6">
+                  <div className="flex items-center space-x-3 mb-2">
                     <Image
-                      src={propertyImages[1]}
-                      alt="Colonial House"
-                      fill
-                      className="object-cover"
+                      src={properties[0].avatar}
+                      alt={properties[0].name}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
                     />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Image
-                        src={properties[1].avatar}
-                        alt={properties[1].name}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-sm">{properties[1].name}</h3>
-                        <p className="text-xs text-gray-400">{properties[1].address}</p>
-                      </div>
+                    <div>
+                      <h3 className="font-semibold text-sm">{properties[0].name}</h3>
+                      <p className="text-xs text-gray-400">{properties[0].address}</p>
                     </div>
-                    <p className="text-xs text-gray-400 italic">{properties[1].description}</p>
                   </div>
+                  <p className="text-xs text-gray-400 italic">{properties[0].description}</p>
                 </div>
+              </div>
 
-                {/* Michael Harrison */}
-                <div className="bg-[#141832] rounded-xl overflow-hidden hover:ring-2 hover:ring-[#22C55E] transition-all">
-                  <div className="aspect-video relative">
-                    <Image
-                      src={propertyImages[5]}
-                      alt="Snow House"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Image
-                        src={properties[2].avatar}
-                        alt={properties[2].name}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-sm">{properties[2].name}</h3>
-                        <p className="text-xs text-gray-400">{properties[2].address}</p>
-                      </div>
-                    </div>
-                    <p className="text-xs text-gray-400 italic">{properties[2].description}</p>
-                  </div>
+              {/* Bob Eastman */}
+              <div className="bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+                <div className="h-48 md:h-40 relative">
+                  <Image
+                    src={propertyImages[1]}
+                    alt="Colonial House"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-
-                {/* Rebecca Mitchell */}
-                <div className="bg-[#141832] rounded-xl overflow-hidden hover:ring-2 hover:ring-[#22C55E] transition-all">
-                  <div className="aspect-video relative">
+                <div className="p-6">
+                  <div className="flex items-center space-x-3 mb-2">
                     <Image
-                      src={propertyImages[3]}
-                      alt="Ranch House"
-                      fill
-                      className="object-cover"
+                      src={properties[1].avatar}
+                      alt={properties[1].name}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
                     />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Image
-                        src={properties[3].avatar}
-                        alt={properties[3].name}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-sm">{properties[3].name}</h3>
-                        <p className="text-xs text-gray-400">{properties[3].address}</p>
-                      </div>
+                    <div>
+                      <h3 className="font-semibold text-sm">{properties[1].name}</h3>
+                      <p className="text-xs text-gray-400">{properties[1].address}</p>
                     </div>
-                    <p className="text-xs text-gray-400 italic">{properties[3].description}</p>
                   </div>
+                  <p className="text-xs text-gray-400 italic">{properties[1].description}</p>
                 </div>
+              </div>
 
-                {/* Douglas Warner */}
-                <div className="bg-[#141832] rounded-xl overflow-hidden hover:ring-2 hover:ring-[#22C55E] transition-all">
-                  <div className="aspect-video relative">
-                    <Image
-                      src={propertyImages[2]}
-                      alt="Tudor Snow House"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Image
-                        src={properties[4].avatar}
-                        alt={properties[4].name}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-sm">{properties[4].name}</h3>
-                        <p className="text-xs text-gray-400">{properties[4].address}</p>
-                      </div>
-                    </div>
-                    <p className="text-xs text-gray-400 italic">{properties[4].description}</p>
-                  </div>
+              {/* Michael Harrison */}
+              <div className="bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+                <div className="h-48 md:h-40 relative">
+                  <Image
+                    src={propertyImages[5]}
+                    alt="Snow House"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-
-                {/* James Wilson */}
-                <div className="bg-[#141832] rounded-xl overflow-hidden hover:ring-2 hover:ring-[#22C55E] transition-all">
-                  <div className="aspect-video relative">
+                <div className="p-6">
+                  <div className="flex items-center space-x-3 mb-2">
                     <Image
-                      src={propertyImages[4]}
-                      alt="Palm House"
-                      fill
-                      className="object-cover"
+                      src={properties[2].avatar}
+                      alt={properties[2].name}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
                     />
-                  </div>
-                  <div className="p-4">
-                    <div className="flex items-center space-x-3 mb-2">
-                      <Image
-                        src={properties[5].avatar}
-                        alt={properties[5].name}
-                        width={32}
-                        height={32}
-                        className="rounded-full"
-                      />
-                      <div>
-                        <h3 className="font-semibold text-sm">{properties[5].name}</h3>
-                        <p className="text-xs text-gray-400">{properties[5].address}</p>
-                      </div>
+                    <div>
+                      <h3 className="font-semibold text-sm">{properties[2].name}</h3>
+                      <p className="text-xs text-gray-400">{properties[2].address}</p>
                     </div>
-                    <p className="text-xs text-gray-400 italic">{properties[5].description}</p>
                   </div>
+                  <p className="text-xs text-gray-400 italic">{properties[2].description}</p>
+                </div>
+              </div>
+
+              {/* Rebecca Mitchell */}
+              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+                <div className="h-48 md:h-40 relative">
+                  <Image
+                    src={propertyImages[3]}
+                    alt="Ranch House"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <Image
+                      src={properties[3].avatar}
+                      alt={properties[3].name}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
+                    />
+                    <div>
+                      <h3 className="font-semibold text-sm">{properties[3].name}</h3>
+                      <p className="text-xs text-gray-400">{properties[3].address}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 italic">{properties[3].description}</p>
+                </div>
+              </div>
+
+              {/* Douglas Warner */}
+              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+                <div className="h-48 md:h-40 relative">
+                  <Image
+                    src={propertyImages[2]}
+                    alt="Tudor Snow House"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <Image
+                      src={properties[4].avatar}
+                      alt={properties[4].name}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
+                    />
+                    <div>
+                      <h3 className="font-semibold text-sm">{properties[4].name}</h3>
+                      <p className="text-xs text-gray-400">{properties[4].address}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 italic">{properties[4].description}</p>
+                </div>
+              </div>
+
+              {/* James Wilson */}
+              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+                <div className="h-48 md:h-40 relative">
+                  <Image
+                    src={propertyImages[4]}
+                    alt="Palm House"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <div className="flex items-center space-x-3 mb-2">
+                    <Image
+                      src={properties[5].avatar}
+                      alt={properties[5].name}
+                      width={32}
+                      height={32}
+                      className="rounded-full"
+                    />
+                    <div>
+                      <h3 className="font-semibold text-sm">{properties[5].name}</h3>
+                      <p className="text-xs text-gray-400">{properties[5].address}</p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-400 italic">{properties[5].description}</p>
                 </div>
               </div>
             </div>
@@ -650,7 +682,7 @@ export default function Home() {
                   <span className="text-[0.9rem] font-medium text-[#22C55E] mr-2">Powered By</span>
                   <span className="text-[1.1rem] text-gray-300">Deep Reality Protocol™</span>
                 </div>
-                <h2 className="text-[2.8rem] md:text-[3.6rem] font-bold leading-[1.2] mb-8">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
                   Neuroscience-Driven<br />
                   <span className="text-[#22C55E]">Training System</span><br />
                   for Real Results
@@ -880,7 +912,7 @@ export default function Home() {
         <section id="benefits" className="py-32 px-4 md:px-6">
           <div className="max-w-[85rem] mx-auto text-center">
             <div className="text-[#22C55E] font-medium mb-4">AI DRIVEN SELLER SCENARIOS</div>
-            <h2 className="text-[2.8rem] md:text-[3.6rem] font-bold mb-8 leading-[1.2]">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-8 leading-[1.2]">
               Empower yourself to do<br />
               <span className="text-[#22C55E]">more real estate deals</span>
             </h2>
@@ -1008,7 +1040,7 @@ export default function Home() {
                 <div className="text-[1rem] tracking-[0.1em] text-[#22C55E] font-medium mb-4">
                   AI DRIVEN SELLER SCENARIOS
                 </div>
-                <h2 className="text-[3.6rem] md:text-[4.8rem] font-bold mb-6 leading-[1.2]">
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-[1.2]">
                   Permanently Amplify<br />
                   Your Sales And Negotiation Skills
                 </h2>
