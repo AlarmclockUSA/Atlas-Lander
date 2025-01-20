@@ -115,7 +115,7 @@ export default function Home() {
     {
       name: "Linda Martinez",
       address: "8847 Mockingbird Lane, Dallas, TX 75238",
-      description: "The Dallas School Teacher Who Talks &quot;Way&quot; Too Much.",
+      description: "The Dallas School Teacher Who Talks \"Way\" Too Much.",
       image: propertyImages[3],
       avatar: profilePictures[3]
     },
