@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -139,93 +140,338 @@ export default function Home() {
   // Add media query to adjust layout for full screen width on mobile
   const styles = `
     @media (max-width: 768px) {
-      nav {
-        display: block;
-        margin-bottom: 2rem;
-        position: relative;
-        height: auto;
-        padding: 1rem 0;
+      /* Main Content Spacing */
+      main {
+        padding-top: 4rem;  /* pt-16 equivalent */
       }
-      nav .flex {
-        flex-direction: column;
+
+      #dashboard {
+        padding-top: 2rem;  /* pt-8 */
+        padding-bottom: 3rem;  /* pb-12 */
+      }
+
+      .mb-8 {
+        margin-bottom: 1.5rem;  /* mb-6 */
+      }
+
+      /* How It Works Section Mobile Alignment */
+      #how-it-works .grid.lg\\:grid-cols-2 {
+        padding: 0 1rem;
+      }
+
+      #how-it-works .grid.lg\\:grid-cols-2 > div:first-child {
+        text-align: center;
+      }
+
+      /* Icons Grid Mobile Alignment */
+      #how-it-works .relative.grid.grid-cols-3 {
+        display: flex;
+        justify-content: center;
         align-items: center;
         gap: 1rem;
+        padding: 0 1rem;
       }
+
+      #how-it-works .relative.grid.grid-cols-3 > div {
+        margin: 0;
+      }
+
+      #how-it-works .relative.grid.grid-cols-3 > div.w-36 {
+        margin: 0 1.5rem;
+      }
+
+      /* Card Profile Layout */
+      .bg-[#141832].rounded-xl {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        border-radius: 0.75rem;
+      }
+
+      /* Profile Section */
+      .flex.items-center.space-x-3 {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.5rem;
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Image and Text */
+      .rounded-full {
+        width: 2rem;
+        height: 2rem;
+        margin-right: 0.5rem;
+      }
+
+      .font-semibold.text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25;
+      }
+
+      .text-xs.text-gray-400 {
+        font-size: 0.75rem;
+        line-height: 1;
+      }
+
+      /* Property Image Container */
+      .h-48.md\\:h-40.relative {
+        height: 10rem;
+        margin-bottom: 1rem;
+      }
+
+      /* Navigation Adjustments */
+      nav .flex {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
       nav .flex-shrink-0 {
         margin-bottom: 0.5rem;
       }
-      nav .hidden.md\:flex {
-        display: none;
-      }
-      nav .flex.items-center.gap-4 {
-        width: 100%;
-        justify-content: center;
-      }
-      .hidden.md\:flex { display: none; }
-      .flex-grow { flex-grow: 1; }
-      .text-center { text-align: center; }
-      .px-4, .md\:px-6 {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-      }
-      .py-32 { padding-top: 4rem; padding-bottom: 4rem; }
-      .text-[3.2rem] { font-size: 1.5rem; }
-      .text-[4.8rem] { font-size: 2.5rem; }
-      .max-w-[85rem] { max-width: 100%; }
-      .mx-auto { margin-left: auto; margin-right: auto; }
-      .mt-20 { margin-top: 2.5rem; }
-      .h-[600px] { height: auto; }
-      .rounded-xl { border-radius: 0.5rem; }
-      .space-x-12 { gap: 0.5rem; }
-      .space-y-4 { gap: 0.5rem; }
-      .text-[1.2rem] { font-size: 0.9rem; }
-      .text-[1.1rem] { font-size: 0.8rem; }
-      .text-[1rem] { font-size: 0.7rem; }
-      .leading-[1.618] { line-height: 1.4; }
-      .leading-[1.272] { line-height: 1.1; }
-      .leading-[1.2] { line-height: 1; }
-      .max-w-[61.8%] { max-width: 90%; }
-      .max-w-6xl { max-width: 100%; }
-      .w-full { width: 100%; }
-      .h-full { height: 100%; }
-      .flex { display: flex; }
-      .items-center { align-items: center; }
-      .justify-center { justify-content: center; }
-      .justify-between { justify-content: space-between; }
-      .overflow-hidden { overflow: hidden; }
-      .transition-all { transition: all 0.3s ease; }
-      .hover\:bg-[#16A34A]:hover { background-color: #16A34A; }
-      .hover\:text-[#22C55E]:hover { color: #22C55E; }
-      .hover\:underline:hover { text-decoration: underline; }
-      .relative.pt-32.pb-40.px-4.md\:px-6.text-\[87\.5\%\] { width: 100%; padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0; }
-      #dashboard {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+
+      /* Content Container Adjustments */
+      .px-4 {
         padding-left: 1rem;
         padding-right: 1rem;
       }
-      .flex.items-center {
-        justify-content: flex-start;
+
+      .py-16 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+
+      /* Text Size Adjustments */
+      .text-[2rem] {
+        font-size: 1.5rem;
+      }
+
+      .text-base {
+        font-size: 0.875rem;
+      }
+
+      /* Timeline Section Mobile Styles */
+      #research .max-w-[61.8%] {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+
+      /* Timeline Container */
+      #research .relative {
+        position: relative;
+      }
+
+      /* Timeline Vertical Line Adjustments */
+      #research .absolute.left-[28px] {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 80px;
+        height: calc(100% - 120px);
+        opacity: 0.6;
+        z-index: 0;
+      }
+
+      /* Timeline Items Container */
+      #research .space-y-[6.472rem] {
+        text-align: center;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Timeline Item */
+      #research .relative.flex.min-h-[280px] {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 2rem;
+      }
+
+      /* Replace Icons with Dots */
+      #research .absolute.left-0.w-[58px] {
+        position: relative;
+        width: 16px;
+        height: 16px;
+        margin-bottom: 2rem;
+        background: #22C55E;
+        border-radius: 50%;
+        opacity: 0.6;
+      }
+
+      #research .absolute.left-0.w-[58px] > div {
+        display: none;
+      }
+
+      /* Content Container */
+      #research .ml-24 {
+        margin-left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #0A0C1B;
+        position: relative;
+        z-index: 2;
+      }
+
+      #research .max-w-[90%] {
+        max-width: 100%;
+      }
+
+      /* Text Alignment */
+      #research h3.text-[1.8rem] {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      #research p.text-[1.2rem] {
+        text-align: center;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      #research .text-[1rem].text-gray-500.italic {
+        text-align: center;
+        font-size: 0.875rem;
+      }
+
+      /* Quote Section Mobile Styles */
+      #how-it-works .max-w-[61.8%] blockquote {
+        font-size: 1.75rem;
+        line-height: 1.3;
+      }
+
+      #how-it-works .max-w-[61.8%] p {
+        font-size: 1rem;
+      }
+
+      /* Stats Section Mobile Styles */
+      .max-w-[61.8%] blockquote {
+        font-size: 1.75rem;
+        line-height: 1.3;
+        text-align: left;
+      }
+
+      .max-w-[61.8%] blockquote br {
+        display: none;
+      }
+
+      .max-w-[61.8%] p {
+        font-size: 1rem;
+        text-align: left;
+      }
+
+      /* Typography Scale */
+      h1, .h1 {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+      }
+
+      h2, .h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+      }
+
+      h3, .h3 {
+        font-size: clamp(1.5rem, 3vw, 1.8rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+      }
+
+      /* Body Text */
+      p, .body-text {
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        line-height: 1.5;
+        max-width: 65ch;
+      }
+
+      /* Small Text */
+      .small-text {
+        font-size: 0.875rem;
+        line-height: 1.4;
+      }
+
+      /* Hero Section */
+      #dashboard h1 {
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+      }
+
+      /* Section Headers */
+      section h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+
+      /* Card Headers */
+      .bg-[#141832] h3 {
+        font-size: clamp(1.5rem, 3vw, 1.8rem);
+      }
+
+      /* Body Text in Cards */
+      .bg-[#141832] p {
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        max-width: 65ch;
+      }
+
+      /* Quote Text */
+      blockquote {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      /* Navigation Text */
+      nav a {
+        font-size: 1rem;
+        line-height: 1.2;
+      }
+
+      /* Timeline Text */
+      #research h3 {
+        font-size: clamp(1.5rem, 3vw, 1.8rem);
+      }
+
+      #research p {
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        max-width: 65ch;
+      }
+
+      /* Benefits Section */
+      #benefits h2 {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+      }
+
+      #benefits h3 {
+        font-size: clamp(1.5rem, 3vw, 1.8rem);
+      }
+
+      #benefits p, #benefits li {
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        max-width: 65ch;
+      }
+
+      /* Footer Text */
+      footer p {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+
+      footer .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.4;
       }
     }
 
-    @media (max-width: 1024px) {
-      .fixed.top-0.left-0.right-0.z-50 {
-        display: none !important;
+    /* Tablet Transition */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .bg-[#141832].rounded-xl {
+        padding: 1.5rem;
       }
-      .max-w-[85rem], .max-w-6xl {
-        max-width: 100%;
-      }
-      .px-4, .md\:px-6 {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-      .mx-auto {
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .flex {
-        flex-direction: column;
+
+      .h-48.md\\:h-40.relative {
+        height: 12rem;
       }
     }
   `;
@@ -242,54 +488,144 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#0A0C1B] text-white overflow-x-hidden">
+    <main className="min-h-screen bg-[#0A0C1B] text-white overflow-x-hidden pt-16">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0A0C1B] border-b border-white/10">
-        <div className="max-w-[85rem] mx-auto h-16">
-          <div className="flex h-full items-center px-4 md:px-6">
-
+        <div className="w-full px-4 md:px-6 lg:px-8 mx-auto md:max-w-[90%] lg:max-w-7xl">
+          <div className="relative h-16 flex items-center justify-between">
             {/* Logo */}
             <div className="flex-shrink-0">
               <div className="text-xl font-bold">ATLAS</div>
             </div>
 
-            {/* Center Nav */}
-            <div className="hidden md:flex items-center ml-auto">
-              <a href="#sellers" className="text-gray-300 hover:text-white px-6">Sellers</a>
-              <a href="#how-it-works" className="text-gray-300 hover:text-white px-6">How It Works</a>
-              <a href="#research" className="text-gray-300 hover:text-white px-6">Research</a>
-              <a href="#benefits" className="text-gray-300 hover:text-white px-6">Benefits</a>
+            {/* Mobile menu button */}
+            <div className="flex lg:hidden">
+              <button 
+                type="button"
+                className="text-gray-300 hover:text-white"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <span className="sr-only">Open main menu</span>
+                {isMobileMenuOpen ? (
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
+                )}
+              </button>
             </div>
 
-            {/* Right Side */}
-            <div className="flex items-center gap-4">
-              <a href="/login" className="text-gray-300 hover:text-white">Sign in</a>
-              <a href="/signup" className="hidden md:inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-4 py-2 rounded-lg text-sm font-medium">
+            {/* Desktop navigation */}
+            <div className="hidden lg:flex lg:items-center lg:gap-8">
+              <a href="#sellers" className="text-gray-300 hover:text-white px-4 py-2">Sellers</a>
+              <a href="#how-it-works" className="text-gray-300 hover:text-white px-4 py-2">How It Works</a>
+              <a href="#research" className="text-gray-300 hover:text-white px-4 py-2">Research</a>
+              <a href="#benefits" className="text-gray-300 hover:text-white px-4 py-2">Benefits</a>
+            </div>
+
+            {/* Desktop buttons */}
+            <div className="hidden lg:flex lg:items-center lg:gap-4">
+              <a href="https://login.atlastraining.io" className="text-gray-300 hover:text-white px-4 py-2 rounded-lg">
+                Login
+              </a>
+              <a href="https://secure.atlastraining.io" className="bg-[#22C55E] hover:bg-[#16A34A] px-4 py-2 rounded-lg text-white">
                 Try Now Free
               </a>
+            </div>
+
+            {/* Mobile menu */}
+            <div 
+              className={`${
+                isMobileMenuOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+              } fixed inset-0 top-16 bg-[#0A0C1B] transition-all duration-300 ease-in-out lg:hidden`}
+            >
+              <div className="flex flex-col p-4 space-y-4">
+                {/* Exit button */}
+                <button
+                  className="absolute top-4 right-4 text-gray-300 hover:text-white p-2"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  <span className="sr-only">Close menu</span>
+                  <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                <a 
+                  href="#sellers" 
+                  className="text-gray-300 hover:text-white px-4 py-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Sellers
+                </a>
+                <a 
+                  href="#how-it-works" 
+                  className="text-gray-300 hover:text-white px-4 py-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  How It Works
+                </a>
+                <a 
+                  href="#research" 
+                  className="text-gray-300 hover:text-white px-4 py-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Research
+                </a>
+                <a 
+                  href="#benefits" 
+                  className="text-gray-300 hover:text-white px-4 py-4"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Benefits
+                </a>
+                <div className="border-t border-white/10 pt-4">
+                  <a 
+                    href="https://login.atlastraining.io" 
+                    className="block text-gray-300 hover:text-white px-4 py-2 rounded-lg mb-2"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Login
+                  </a>
+                  <a 
+                    href="https://secure.atlastraining.io" 
+                    className="block bg-[#22C55E] hover:bg-[#16A34A] px-4 py-2 rounded-lg text-white text-center"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Try Now Free
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="dashboard" className="relative py-16 md:py-32 pb-20 md:pb-40 px-4 md:px-6 lg:px-8 text-sm md:text-base">
-        <div className="w-full max-w-7xl mx-auto text-center">
-          <div className="inline-flex items-center bg-white/5 rounded-full px-4 py-2 mb-8 border border-white/10">
-            <span className="text-sm font-medium text-[#22C55E] mr-2">INTRODUCING</span>
-            <span className="text-base leading-snug text-gray-300">The Next Generation of Sales Training →</span>
+      <section id="dashboard" className="relative pt-20 md:py-16 pb-12 md:pb-20 px-4 md:px-6 lg:px-8 text-sm md:text-base">
+        <div className="w-full mx-auto px-4 md:px-0 max-w-[90%] md:max-w-[90%] lg:max-w-7xl text-center">
+          {/* Top Introduction Element - Rectangular */}
+          <div className="mt-8 md:mt-24 mb-8 flex justify-center">
+            <div className="inline-flex items-center bg-white/5 rounded-lg px-4 py-2 border border-white/10">
+              <span className="text-sm font-medium text-[#22C55E] whitespace-nowrap mr-2">INTRODUCING</span>
+              <span className="text-base leading-snug text-gray-300 whitespace-nowrap">The Next Generation of Sales Training →</span>
+            </div>
           </div>
+
           <div className="text-sm tracking-wide text-[#22C55E] font-medium mb-4">
             GET STARTED FREE TODAY
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+          <h1 className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] font-bold tracking-[-0.02em] mb-8 leading-[1.1] max-w-[68%] mx-auto">
             Permanently Amplify Your<br />
             REI Sales and Negotiation Skills
           </h1>
-          <p className="text-base text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-[1.2rem] lg:text-[1.3rem] text-gray-400 mb-12 w-full md:max-w-2xl mx-4 md:mx-auto leading-relaxed">
             Stop Losing Deals You Should Have Won With This AI-Powered Training System That Uses Neuroscience to permanently amplify your Sales and Negotiation Skills—So You Never Miss a Closable Deal Again
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center px-4 md:px-0">
             <a href="https://secure.atlastraining.io" className="inline-flex items-center justify-center bg-[#22C55E] hover:bg-[#16A34A] w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg text-base md:text-lg font-medium transition-all">
               Try Now Free
               <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -301,13 +637,14 @@ export default function Home() {
 
         {/* Dashboard Preview */}
         <div 
-          className="hidden md:block max-w-7xl mx-auto mt-20 relative overflow-hidden"
+          className="hidden md:block w-full mx-auto md:max-w-[90%] lg:max-w-7xl mt-20 relative overflow-visible"
           onMouseMove={handleMouseMove}
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          {/* Green gradient circle */}
-          <div className="gradient-circle"></div>
+          {/* Green gradient circle - Positioned absolutely relative to the viewport */}
+          <div className="absolute -top-[200px] -left-[200px] w-[800px] h-[800px] bg-[#22C55E]/10 blur-[120px] rounded-full pointer-events-none"></div>
+          <div className="absolute top-[100px] -right-[200px] w-[600px] h-[600px] bg-[#22C55E]/10 blur-[120px] rounded-full pointer-events-none"></div>
 
           {/* Background screenshot - Property Grid */}
           <div 
@@ -461,23 +798,26 @@ export default function Home() {
         </div>
 
         {/* Two Column Section */}
-        <section id="sellers" className="max-w-[85rem] mx-auto mt-32 mb-24">
+        <section id="sellers" className="w-full mx-auto md:max-w-[90%] lg:max-w-[85rem] mt-32 mb-24">
           <div className="flex flex-col items-center px-4 md:px-6">
             {/* Text Content */}
             <div className="text-center mb-16 max-w-[61.8%]">
-              <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <div className="text-sm tracking-wide text-[#22C55E] font-medium mb-4">
+                NEW SELLERS ADDED MONTHLY
+              </div>
+              <h2 className="text-[2rem] md:text-4xl lg:text-6xl font-bold mb-6 leading-[1.2]">
                 Breathtakingly Realistic<br />
                 <span className="text-[#22C55E]">Seller Simulations</span>
               </h2>
-              <p className="text-[1.2rem] text-gray-400 leading-[1.618]">
+              <p className="text-base md:text-[1.2rem] text-gray-400 leading-[1.618]">
                 Our AI sellers are trained on thousands of real conversations, objections, and personality types. Practice with sellers who feel real, respond naturally, and test your skills.
               </p>
             </div>
 
             {/* Photo Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
               {/* Frank Reeves */}
-              <div className="bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+              <div className="bg-[#141832] rounded-xl overflow-hidden w-full hover:ring-2 hover:ring-[#22C55E] transition-all">
                 <div className="h-48 md:h-40 relative">
                   <Image
                     src={propertyImages[0]}
@@ -505,7 +845,7 @@ export default function Home() {
               </div>
 
               {/* Bob Eastman */}
-              <div className="bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+              <div className="bg-[#141832] rounded-xl overflow-hidden w-full hover:ring-2 hover:ring-[#22C55E] transition-all">
                 <div className="h-48 md:h-40 relative">
                   <Image
                     src={propertyImages[1]}
@@ -533,7 +873,7 @@ export default function Home() {
               </div>
 
               {/* Michael Harrison */}
-              <div className="bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+              <div className="bg-[#141832] rounded-xl overflow-hidden w-full hover:ring-2 hover:ring-[#22C55E] transition-all">
                 <div className="h-48 md:h-40 relative">
                   <Image
                     src={propertyImages[5]}
@@ -561,7 +901,7 @@ export default function Home() {
               </div>
 
               {/* Rebecca Mitchell */}
-              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full hover:ring-2 hover:ring-[#22C55E] transition-all">
                 <div className="h-48 md:h-40 relative">
                   <Image
                     src={propertyImages[3]}
@@ -589,7 +929,7 @@ export default function Home() {
               </div>
 
               {/* Douglas Warner */}
-              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full hover:ring-2 hover:ring-[#22C55E] transition-all">
                 <div className="h-48 md:h-40 relative">
                   <Image
                     src={propertyImages[2]}
@@ -617,7 +957,7 @@ export default function Home() {
               </div>
 
               {/* James Wilson */}
-              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full mb-4 md:mb-0 hover:ring-2 hover:ring-[#22C55E] transition-all">
+              <div className="hidden md:block bg-[#141832] rounded-xl overflow-hidden w-full hover:ring-2 hover:ring-[#22C55E] transition-all">
                 <div className="h-48 md:h-40 relative">
                   <Image
                     src={propertyImages[4]}
@@ -659,13 +999,7 @@ export default function Home() {
           <div className="flex flex-col px-4 md:px-6">
             <div className="max-w-[61.8%] mx-auto">
               <blockquote className="text-left text-[2.8rem] md:text-[3.6rem] font-bold leading-[1.272]">
-                "With Atlas, I don't have to feel the fear<br />
-                of messing up or the weight of<br />
-                judgment.<br />
-                I can finally practice, get<br />
-                better, and step<br />
-                into real conversations feeling<br />
-                <span className="text-[#22C55E]">prepared and confident.</span>"
+                "With Atlas, I don't have to feel the fear of messing up or the weight of judgment. I can finally practice, get better, and step into real conversations feeling <span className="text-[#22C55E]">prepared and confident.</span>"
               </blockquote>
               <p className="mt-6 text-gray-400 text-[1.1rem] leading-[1.618]">— Atlas Founding Member</p>
             </div>
@@ -678,16 +1012,19 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
               {/* Left Column - Text */}
               <div>
-                <div className="inline-flex items-center bg-white/5 rounded-full px-4 py-2 mb-8 border border-white/10">
-                  <span className="text-[0.9rem] font-medium text-[#22C55E] mr-2">Powered By</span>
-                  <span className="text-[1.1rem] text-gray-300">Deep Reality Protocol™</span>
+                {/* Protocol Element - Mobile Optimized */}
+                <div className="flex justify-center w-full md:justify-start">
+                  <div className="inline-flex items-center justify-center gap-2 min-w-fit bg-white/5 rounded-full px-4 py-2 border border-white/10 mb-8">
+                    <span className="text-sm md:text-base font-medium text-[#22C55E] whitespace-nowrap">Powered By</span>
+                    <span className="text-base md:text-lg text-gray-300 leading-normal whitespace-nowrap">Deep Reality Protocol™</span>
+                  </div>
                 </div>
-                <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
+                <h2 className="text-[2rem] md:text-4xl lg:text-6xl font-bold mb-6 leading-[1.2]">
                   Neuroscience-Driven<br />
                   <span className="text-[#22C55E]">Training System</span><br />
                   for Real Results
                 </h2>
-                <p className="text-[1.2rem] leading-[1.618] text-gray-400">
+                <p className="text-base md:text-[1.2rem] leading-[1.618] text-gray-400">
                   Built on advancements in neuroscience and cognitive behavioral training,<br />
                   our <span className="text-white">three pillars of Deep Reality Protocol</span> create lasting behavioral change
                 </p>
@@ -699,9 +1036,9 @@ export default function Home() {
                 <div className="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#22C55E]/10 blur-[120px] rounded-full"></div>
                 
                 {/* Icons container */}
-                <div className="relative grid grid-cols-3 gap-8 items-center">
+                <div className="relative grid grid-cols-3 gap-8 items-center justify-items-center">
                   {/* Left Icon */}
-                  <div className="group w-28 h-28 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
+                  <div className="group w-28 h-28 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 mb-2 group-hover:scale-110 transition-transform flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -711,7 +1048,7 @@ export default function Home() {
                   </div>
                   
                   {/* Center Icon (larger) */}
-                  <div className="group w-36 h-36 rounded-2xl bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm border border-white/20 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
+                  <div className="group w-36 h-36 md:w-36 md:h-36 rounded-2xl bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm border border-white/20 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
                     <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#16A34A] mb-2 group-hover:scale-110 transition-transform flex items-center justify-center">
                       <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -721,7 +1058,7 @@ export default function Home() {
                   </div>
                   
                   {/* Right Icon */}
-                  <div className="group w-28 h-28 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
+                  <div className="group w-28 h-28 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 mb-2 group-hover:scale-110 transition-transform flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
@@ -736,46 +1073,46 @@ export default function Home() {
             {/* Three Pillars Description */}
             <div className="grid lg:grid-cols-3 gap-8 mt-16">
               {/* Cognitive Pillar */}
-              <div className="text-left">
-                <div className="flex items-center mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 flex items-center justify-center mr-3">
+              <div className="text-center">
+                <div className="flex flex-col items-center mb-4">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 flex items-center justify-center mb-3">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                     </svg>
                   </div>
                   <h3 className="text-lg font-bold">Cognitive Enhancement</h3>
                 </div>
-                <p className="text-gray-400 leading-[1.618]">
+                <p className="text-gray-400 leading-[1.618] max-w-sm mx-auto">
                   Build confidence and conviction through repeated exposure to real-time problem-solving scenarios. Learn to create emotional connections and handle unexpected situations naturally, developing the mental agility needed for successful negotiations.
                 </p>
               </div>
 
               {/* Neural Pillar */}
-              <div className="text-left">
-                <div className="flex items-center mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 flex items-center justify-center mr-3">
+              <div className="text-center">
+                <div className="flex flex-col items-center mb-4">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 flex items-center justify-center mb-3">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                     </svg>
                   </div>
                   <h3 className="text-lg font-bold">Neural Adaptation</h3>
                 </div>
-                <p className="text-gray-400 leading-[1.618]">
+                <p className="text-gray-400 leading-[1.618] max-w-sm mx-auto">
                   Instead of pretending or "practicing," you'll engage in deep reality-based scenarios. Build muscle memory through emotional investment, creating lasting neural pathways that transform how you naturally respond in real-world situations.
                 </p>
               </div>
 
               {/* Behavioral Pillar */}
-              <div className="text-left">
-                <div className="flex items-center mb-4">
-                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 flex items-center justify-center mr-3">
+              <div className="text-center">
+                <div className="flex flex-col items-center mb-4">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 flex items-center justify-center mb-3">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
                     </svg>
                   </div>
                   <h3 className="text-lg font-bold">Behavioral Integration</h3>
                 </div>
-                <p className="text-gray-400 leading-[1.618]">
+                <p className="text-gray-400 leading-[1.618] max-w-sm mx-auto">
                   Experience genuine reactions and emotions, face real fears, and encounter actual objections. Develop authentic responses versus scripted answers across millions of possible scenarios, ensuring you're prepared for any situation.
                 </p>
               </div>
@@ -784,16 +1121,23 @@ export default function Home() {
         </section>
 
         {/* Research Section */}
-        <section id="research" className="py-32 px-4 md:px-6 bg-[#0A0C1B]">
-          <div className="max-w-[85rem] mx-auto">
+        <section id="research" className="py-32 px-4 md:px-6 lg:px-8 bg-[#0A0C1B]">
+          <div className="w-full mx-auto md:max-w-[90%] lg:max-w-[85rem]">
             {/* Section Header */}
             <div className="text-center mb-[6.472rem]">
-              <h2 className="text-[2.8rem] md:text-[3.6rem] font-bold mb-[2.618rem] leading-[1.2]">
+              {/* Protocol Element - Mobile Optimized */}
+              <div className="flex justify-center">
+                <div className="inline-flex items-center justify-center gap-2 min-w-fit bg-white/5 rounded-full px-4 py-2 border border-white/10 mb-8">
+                  <span className="text-sm md:text-base font-medium text-[#22C55E] whitespace-nowrap">Powered By</span>
+                  <span className="text-base md:text-lg text-gray-300 leading-normal whitespace-nowrap">Deep Reality Protocol™</span>
+                </div>
+              </div>
+              <h2 className="text-[2rem] md:text-[3.6rem] font-bold mb-[2.618rem] leading-[1.2]">
                 Inspired by Military Grade<br />
                 <span className="text-[#22C55E]">Training Methodology</span>
               </h2>
               <div className="text-[1rem] tracking-[0.1em] text-[#22C55E] font-medium mb-[1.618rem]">BACKED BY LANDMARK RESEARCH</div>
-              <p className="text-[1.2rem] text-white/90 max-w-[61.8%] mx-auto leading-[1.618]">
+              <p className="text-base md:text-[1.2rem] text-white/90 max-w-[61.8%] mx-auto leading-[1.618]">
                 A meta-analysis of 247 military studies and leading medical institutions reveals why DRP's training methodology creates exceptional performers:
               </p>
             </div>
@@ -1048,42 +1392,38 @@ export default function Home() {
                   GET STARTED FREE TODAY
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors">1-on-1 AI Sales Simulation with deeply authentic property owners</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">1-on-1 AI Sales Simulation with deeply authentic property owners</span>
                   <span className="text-[1.1rem] text-[#22C55E]">$897/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors">Personal AI Sales coach available 24/7</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Personal AI Sales coach available 24/7</span>
                   <span className="text-[1.1rem] text-[#22C55E]">$499/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors">Millions of Sellers scenario possibilities</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Millions of Sellers scenario possibilities</span>
                   <span className="text-[1.1rem] text-[#22C55E]">$399/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors">Deep Reality Protocol Driven Feedback and growth Dashboard</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Deep Reality Protocol Driven Feedback and growth Dashboard</span>
                   <span className="text-[1.1rem] text-[#22C55E]">$399/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors">Direct Feedback post call to review</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Direct Feedback post call to review</span>
                   <span className="text-[1.1rem] text-[#22C55E]">$299/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors">10hrs of conversation time with AI Sellers</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">10hrs of conversation time with AI Sellers</span>
                   <span className="text-[1.1rem] text-[#22C55E]">$399/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-4 mt-2">
-                  <span className="text-[1.2rem] font-medium text-white">Total Value</span>
+                  <span className="text-[1.2rem] font-medium text-white text-left">Total Value</span>
                   <span className="text-[1.2rem] font-medium text-[#22C55E]">$2,892/mo</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-4 bg-[#22C55E]/10 rounded-lg px-4">
-                  <span className="text-[1.2rem] font-medium text-white">Your Investment</span>
+                  <span className="text-[1.2rem] font-medium text-white text-left">Your Investment</span>
                   <span className="text-[1.2rem] font-medium text-[#22C55E]">$299/mo</span>
                 </div>
               </div>
-              <p className="text-[1.2rem] text-gray-400 mb-12 max-w-[61.8%] mx-auto leading-[1.618]">
-                Our team is ready to help you step into the future of real estate sales. Book a demo today
-                to see how our AI training can completely transform your business.
-              </p>
               <div className="flex items-center justify-center">
                 <a href="https://secure.atlastraining.io" className="inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-8 py-4 rounded-lg text-[1.1rem] font-medium transition-all">
                   Start Training Now
