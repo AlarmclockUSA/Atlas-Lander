@@ -22,6 +22,12 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://atlastraining.io'),
   title: "Atlas | The World's First AI-Powered REI Sales Training",
   description: "Transform your real estate investing with the world's first AI-powered sales training system. Practice with ultra-realistic seller simulations and master deal negotiations.",
+  applicationName: "Atlas Training",
+  appleWebApp: {
+    capable: true,
+    title: "Atlas Training",
+    statusBarStyle: "default"
+  },
   openGraph: {
     title: "Atlas | The World's First AI-Powered REI Sales Training",
     description: "Master real estate negotiations with our groundbreaking AI training system. Practice with ultra-realistic seller simulations and close more deals.",
