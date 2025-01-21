@@ -1008,10 +1008,10 @@ export default function Home() {
 
         {/* How It Works Section */}
         <section id="how-it-works" className="py-32 px-4 md:px-6 relative overflow-visible">
-          <div className="max-w-[85rem] mx-auto relative">
-            <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+          <div className="max-w-[85rem] mx-auto relative overflow-x-hidden">
+            <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10 w-full">
               {/* Left Column - Text */}
-              <div>
+              <div className="w-full">
                 {/* Protocol Element - Mobile Optimized */}
                 <div className="flex justify-center w-full md:justify-start">
                   <div className="inline-flex items-center justify-center gap-2 min-w-fit bg-white/5 rounded-full px-4 py-2 border border-white/10 mb-8">
@@ -1031,14 +1031,14 @@ export default function Home() {
               </div>
 
               {/* Right Column - Icons */}
-              <div className="relative">
+              <div className="relative w-full">
                 {/* Green glow effect */}
                 <div className="absolute -top-[200px] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#22C55E]/10 blur-[120px] rounded-full"></div>
                 
                 {/* Icons container */}
-                <div className="relative grid grid-cols-3 gap-8 items-center justify-items-center">
+                <div className="relative w-full max-w-[400px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 items-center justify-items-center">
                   {/* Left Icon */}
-                  <div className="group w-28 h-28 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
+                  <div className="group w-full max-w-[112px] aspect-square rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 mb-2 group-hover:scale-110 transition-transform flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -1048,7 +1048,7 @@ export default function Home() {
                   </div>
                   
                   {/* Center Icon (larger) */}
-                  <div className="group w-36 h-36 md:w-36 md:h-36 rounded-2xl bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm border border-white/20 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
+                  <div className="group w-full max-w-[144px] aspect-square rounded-2xl bg-gradient-to-br from-white/20 to-white/10 backdrop-blur-sm border border-white/20 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
                     <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#22C55E] to-[#16A34A] mb-2 group-hover:scale-110 transition-transform flex items-center justify-center">
                       <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
@@ -1058,7 +1058,7 @@ export default function Home() {
                   </div>
                   
                   {/* Right Icon */}
-                  <div className="group w-28 h-28 md:w-28 md:h-28 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
+                  <div className="group w-full max-w-[112px] aspect-square rounded-2xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 flex flex-col items-center justify-center transform hover:scale-105 transition-all hover:border-[#22C55E]/20">
                     <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#22C55E]/80 to-[#16A34A]/80 mb-2 group-hover:scale-110 transition-transform flex items-center justify-center">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
@@ -1229,22 +1229,22 @@ export default function Home() {
         </section>
 
         {/* CTA Box */}
-        <div className="mt-24 max-w-[61.8%] mx-auto relative">
-          <div className="bg-[#0D1025] rounded-xl p-12 border border-white/[0.08] relative overflow-hidden">
+        <div className="mt-24 max-w-[85rem] mx-auto relative">
+          <div className="bg-[#0D1025] rounded-xl p-16 border border-white/[0.08] relative overflow-hidden">
             {/* Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#22C55E]/10 via-transparent to-transparent"></div>
             
             {/* Content */}
-            <div className="relative z-10">
-              <h3 className="text-[2rem] font-bold mb-6 leading-[1.2] text-center">
+            <div className="relative z-10 max-w-3xl mx-auto">
+              <h3 className="text-[2rem] md:text-[2.8rem] font-bold mb-8 leading-[1.2] text-center">
                 Ready to Experience the <span className="text-[#22C55E]">Next Generation</span><br />
                 of Sales Training?
               </h3>
-              <p className="text-[1.2rem] text-gray-400 mb-8 leading-[1.618] text-center">
+              <p className="text-[1.2rem] text-gray-400 mb-12 leading-[1.618] text-center">
                 Join the ranks of top performers who have transformed their sales approach through our advanced AI training system.
               </p>
               <div className="flex items-center justify-center">
-                <a href="https://secure.atlastraining.io" className="inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-[2rem] py-[1.2rem] rounded-lg text-[1.2rem] font-medium transition-all">
+                <a href="https://secure.atlastraining.io" className="inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-12 py-5 rounded-lg text-[1.2rem] font-medium transition-all">
                   Start Training Now
                 </a>
               </div>
