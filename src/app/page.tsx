@@ -616,14 +616,14 @@ export default function Home() {
           </div>
 
           <div className="text-sm tracking-wide text-[#22C55E] font-medium mb-4">
-            GET STARTED FREE TODAY
+            PERFECT YOUR SELLER CALLS WITH AI ROLEPLAY
           </div>
           <h1 className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] font-bold tracking-[-0.02em] mb-8 leading-[1.1] max-w-[68%] mx-auto">
             Permanently Amplify Your<br />
             REI Sales and Negotiation Skills
           </h1>
           <p className="text-base md:text-[1.2rem] lg:text-[1.3rem] text-gray-400 mb-12 w-full md:max-w-2xl mx-4 md:mx-auto leading-relaxed">
-            Stop Losing Deals You Should Have Won With This AI-Powered Training System That Uses Neuroscience to permanently amplify your Sales and Negotiation Skills—So You Never Miss a Closable Deal Again
+            Stop losing deals you should have won. Our AI-powered training system uses neuroscience to permanently amplify your sales and negotiation skills—so you never miss a closable deal again.
           </p>
           <div className="flex justify-center px-4 md:px-0">
             <a href="https://secure.atlastraining.io" className="inline-flex items-center justify-center bg-[#22C55E] hover:bg-[#16A34A] w-full md:w-auto px-4 md:px-6 py-2 md:py-3 rounded-lg text-base md:text-lg font-medium transition-all">
