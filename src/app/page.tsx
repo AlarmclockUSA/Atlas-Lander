@@ -1393,40 +1393,50 @@ export default function Home() {
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
                   <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">1-on-1 AI Sales Simulation with deeply authentic property owners</span>
-                  <span className="text-[1.1rem] text-[#22C55E]">$897/mo value</span>
+                  <span className="text-[1.1rem] text-[#22C55E]">$399/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
                   <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Personal AI Sales coach available 24/7</span>
-                  <span className="text-[1.1rem] text-[#22C55E]">$499/mo value</span>
+                  <span className="text-[1.1rem] text-[#22C55E]">$199/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Millions of Sellers scenario possibilities</span>
-                  <span className="text-[1.1rem] text-[#22C55E]">$399/mo value</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Unlimited Seller scenario possibilities</span>
+                  <span className="text-[1.1rem] text-[#22C55E]">$149/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Deep Reality Protocol Driven Feedback and growth Dashboard</span>
-                  <span className="text-[1.1rem] text-[#22C55E]">$399/mo value</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Deep Reality Protocol Driven Feedback System</span>
+                  <span className="text-[1.1rem] text-[#22C55E]">$129/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Direct Feedback post call to review</span>
-                  <span className="text-[1.1rem] text-[#22C55E]">$299/mo value</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Real-time Performance Analytics Dashboard</span>
+                  <span className="text-[1.1rem] text-[#22C55E]">$99/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-3 border-b border-white/10 hover:border-[#22C55E]/50 group transition-all">
-                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">10hrs of conversation time with AI Sellers</span>
-                  <span className="text-[1.1rem] text-[#22C55E]">$399/mo value</span>
+                  <span className="text-[1.1rem] text-white group-hover:text-[#22C55E] transition-colors text-left">Advanced Negotiation Strategy Training</span>
+                  <span className="text-[1.1rem] text-[#22C55E]">$69/mo value</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-4 mt-2">
                   <span className="text-[1.2rem] font-medium text-white text-left">Total Value</span>
-                  <span className="text-[1.2rem] font-medium text-[#22C55E]">$2,892/mo</span>
+                  <span className="text-[1.2rem] font-medium text-[#22C55E]">$1,044/mo</span>
                 </div>
                 <div className="flex items-center justify-between w-full max-w-[61.8%] py-4 bg-[#22C55E]/10 rounded-lg px-4">
                   <span className="text-[1.2rem] font-medium text-white text-left">Your Investment</span>
-                  <span className="text-[1.2rem] font-medium text-[#22C55E]">$299/mo</span>
+                  <span className="text-[1.2rem] font-medium text-[#22C55E]">$149/mo</span>
+                </div>
+                <div className="flex items-center justify-center w-full max-w-[61.8%] py-2 px-4 mt-3 border border-white/10 rounded-lg hover:border-[#22C55E]/50 group transition-all duration-300">
+                  <span className="text-[1rem] font-medium text-gray-400 group-hover:text-[#22C55E] transition-colors">
+                    Average PPC lead is <span className="text-white group-hover:text-[#22C55E] transition-colors">$175</span>
+                  </span>
                 </div>
               </div>
               <div className="flex items-center justify-center">
-                <a href="https://secure.atlastraining.io" className="inline-flex items-center bg-[#22C55E] hover:bg-[#16A34A] px-8 py-4 rounded-lg text-[1.1rem] font-medium transition-all">
-                  Start Training Now
+                <a href="https://secure.atlastraining.io" className="flex flex-col items-center">
+                  <div className="bg-[#22C55E] hover:bg-[#16A34A] px-8 py-4 rounded-lg text-[1.1rem] font-medium transition-all">
+                    Start Training Now
+                  </div>
+                  <div className="text-[0.9rem] text-gray-400 mt-2 group-hover:text-[#22C55E] transition-colors">
+                    Less than the average PPC lead ($175)
+                  </div>
                 </a>
               </div>
             </div>
